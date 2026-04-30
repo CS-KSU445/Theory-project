@@ -1,7 +1,8 @@
+// this class convert regex into postfix
 import java.util.*;
 
 public class RegexParser {
-
+// check 
     static boolean isOperator(char c) {
         return c == '|' || c == '*' || c == '+' || c == '?' || c == '.';
     }
@@ -13,7 +14,7 @@ public class RegexParser {
         return 0;
     }
 
-    static String addConcat(String regex) {
+    static String addConcat(String regex) {     // adding "." for the concat
         StringBuilder res = new StringBuilder();
 
         for (int i = 0; i < regex.length(); i++) {
