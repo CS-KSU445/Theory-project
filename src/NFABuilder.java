@@ -1,8 +1,8 @@
 import java.util.*;
-
+// convert postfix into NFA
 public class NFABuilder {
 
-    static int id = 0;
+    static int id = 0;  //counter for the states
 
     static State newState() {
         return new State(id++);
