@@ -1,20 +1,24 @@
+
 import java.util.*;
-//  class for representing the node
+//class for representing the node
 public class State {
-    public int id;
-    public Map<Character, List<State>> transitions = new HashMap<>();
-    public List<State> epsilon = new ArrayList<>();   //epslon transition    
-    public String tokenName = null;   // to store the name of token if it was accepting state
+public int id;
 
-    public State(int id) {
-        this.id = id;
-    }
+public Map<Character, List<State>> transitions = new HashMap<>();
 
-    public void addTransition(char c, State s) {
-        transitions.computeIfAbsent(c, k -> new ArrayList<>()).add(s);
-    }
+public List<State> epsilon = new ArrayList<>();   //epslon transition    
 
-    public void addEpsilon(State s) {
-        epsilon.add(s);
-    }
+public String tokenName = null;   // to store the name of token if it was accepting state
+public int priority =Integer.MAX_VALUE;
+public State(int id) {
+    this.id = id;
+}
+
+public void addTransition(char c, State s) {
+    transitions.computeIfAbsent(c, k -> new ArrayList<>()).add(s);
+}
+
+public void addEpsilon(State s) {
+    epsilon.add(s);
+}
 }
