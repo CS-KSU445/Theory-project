@@ -1,4 +1,4 @@
-
+package theory;
 
 import java.util.*;
 
@@ -49,6 +49,12 @@ public class Lexer {
                 continue;
             }
 
+            if (currentChar == '\r' || currentChar == '\t') {
+                pos++;
+                column++;
+                continue;
+            }
+
             if (startState == null) {
                 hasError = true;
                 errorMessage = "Lexing Error: DFA start state is not initialized.";
@@ -70,7 +76,7 @@ public class Lexer {
 
                 char c = input.charAt(tempPos);
 
-                if (c == ' ' || c == '\n') {
+                if (c == ' ' || c == '\n' || c == '\r' || c == '\t') {
                     break;
                 }
 
@@ -137,17 +143,29 @@ public class Lexer {
 
     public void printTokens(List<Token> tokens) {
 
-        System.out.println("Lexeme\tToken\tPosition");
-        System.out.println("--------------------------------");
+        System.out.println("+----------------+----------------+----------------------+");
+        System.out.printf("| %-14s | %-14s | %-20s |%n",
+                "Lexeme", "Token", "Position");
+        System.out.println("+----------------+----------------+----------------------+");
 
         for (Token t : tokens) {
-            System.out.println(t);
+
+            String position = "Line " + t.line + ", col " + t.column;
+
+            System.out.printf("| %-14s | %-14s | %-20s |%n",
+                    "'" + t.lexeme + "'",
+                    t.type,
+                    position);
         }
 
+        System.out.println("+----------------+----------------+----------------------+");
+
         if (hasError) {
-            System.out.println("\n" + errorMessage);
+            System.out.println();
+            System.out.println(errorMessage);
         } else {
-            System.out.println("\nLexing Completed");
+            System.out.println();
+            System.out.println("Lexing Completed");
         }
     }
 }
