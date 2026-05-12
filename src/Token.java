@@ -1,5 +1,4 @@
 
-
 public class Token {
 
     public String lexeme;
