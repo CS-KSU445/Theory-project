@@ -1,28 +1,72 @@
 
-public class Token {
 
-    public String lexeme;
-    public String type;
-    public int line;
-    public int column;
+import java.util.*;
 
-    public Token(String lexeme, String type,
-                 int line, int column) {
+public class TokenSpec {
 
-        this.lexeme = lexeme;
-        this.type = type;
-        this.line = line;
-        this.column = column;
-    }
+    public static List<String[]> getSpecs() {
 
-    @Override
-    public String toString() {
+        return List.of(
 
-        return "'" + lexeme + "'  "
-                + type
-                + "  Line "
-                + line
-                + ", col "
-                + column;
+            // -------------------------
+            // Keywords
+            // -------------------------
+
+            new String[]{"KW_IF", "if"},
+            new String[]{"KW_THEN", "then"},
+            new String[]{"KW_ELSE", "else"},
+            new String[]{"KW_WHILE", "while"},
+            new String[]{"KW_RETURN", "return"},
+            new String[]{"KW_FOR", "for"},
+            new String[]{"KW_BREAK", "break"},
+            new String[]{"KW_CONTINUE", "continue"},
+            new String[]{"KW_INT", "int"},
+            new String[]{"KW_FLOAT", "float"},
+
+
+            // -------------------------
+            // Identifier & Number
+            // -------------------------
+
+            new String[]{"ID",
+                    "[A-Za-z][A-Za-z0-9_]*"},
+
+            new String[]{"NUM",
+                    "[0-9]+(\\.[0-9]+)?"},
+
+
+            // -------------------------
+            // Operators
+            // longest operators first
+            // -------------------------
+
+            new String[]{"EQ", "=="},
+            new String[]{"LE", "<="},
+            new String[]{"GE", ">="},
+            new String[]{"NE", "!="},
+
+            new String[]{"ASSIGN", "="},
+            new String[]{"LT", "<"},
+            new String[]{"GT", ">"},
+
+            new String[]{"PLUS", "\\+"},
+            new String[]{"MINUS", "-"},
+            new String[]{"MULT", "\\*"},
+            new String[]{"DIV", "/"},
+
+
+            // -------------------------
+            // Delimiters
+            // -------------------------
+
+            new String[]{"LPAREN", "\\("},
+            new String[]{"RPAREN", "\\)"},
+
+            new String[]{"LBRACE", "\\{"},
+            new String[]{"RBRACE", "\\}"},
+
+            new String[]{"SEMI", ";"},
+            new String[]{"COMMA", ","}
+        );
     }
 }
